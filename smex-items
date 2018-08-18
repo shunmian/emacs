@@ -1,20 +1,23 @@
 
 ;; ----- smex-history -----
 (
+ info
+ find-variable
+ find-function
  nodejs-repl
+ customize-group
  nodejs-repl-send-buffer
  package-autoremove
- customize-group
- eval-buffer
- cd
- 5x5
 )
 
 ;; ----- smex-data -----
 (
  (eval-buffer . 1)
- (customize-group . 1)
+ (customize-group . 2)
  (package-autoremove . 1)
- (nodejs-repl . 3)
- (nodejs-repl-send-buffer . 3)
+ (nodejs-repl . 6)
+ (nodejs-repl-send-buffer . 4)
+ (find-function . 2)
+ (find-variable . 1)
+ (info . 1)
 )
