@@ -77,6 +77,7 @@
 (electric-indent-mode t)
 (setq inhibit-splash-screen t)
 (global-linum-mode t)
+(global-auto-revert-mode t)
 
 (defun open-my-init-file()
   (interactive)
@@ -96,6 +97,7 @@
 
 (global-company-mode t)
 (setq make-backup-files nil)
+(setq auto-save-default nil)
 (require 'org)
 (setq org-src-fontify-natively t)
 
