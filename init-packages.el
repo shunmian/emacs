@@ -45,7 +45,6 @@
 
 (require 'hungry-delete)
 (global-hungry-delete-mode)
-(require 'smartparens-config)
 (smartparens-global-mode t)
 
 (ivy-mode 1)

@@ -2,6 +2,7 @@
 (add-to-list 'load-path "~/.emacs.d")
 
 (require 'init-packages)
+(require 'init-ui)
 
 ;; (global-set-key (kbd "M-x") 'smex)
 (global-set-key "\C-s" 'swiper)
@@ -11,10 +12,9 @@
 (global-set-key (kbd "C-h f") 'counsel-describe-function)
 (global-set-key (kbd "C-h v") 'counsel-describe-variable)
 
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
+
 (electric-indent-mode t)
-(setq inhibit-splash-screen t)
+
 (global-linum-mode t)
 (global-auto-revert-mode t)
 
@@ -25,7 +25,7 @@
 
 (global-set-key (kbd "<f9>") 'open-my-init-file)
 
-(setq-default cursor-type 'bar)
+
 
 (require 'recentf)
 (recentf-mode t)
@@ -40,7 +40,7 @@
 (require 'org)
 (setq org-src-fontify-natively t)
 
-(setq initial-frame-alist (quote ((fullscreen . maximized))))
+
 
 (abbrev-mode t)
 (define-abbrev-table 'global-abbrev-table '(
@@ -56,7 +56,7 @@
 ;- define a function to quickly open your config file
 
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
-(global-hl-line-mode t)
+
 
 
 (setq ring-bell-function 'ignore)
