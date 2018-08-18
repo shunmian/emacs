@@ -6,8 +6,8 @@
  (when (>= emacs-major-version 24)
    (require 'package)
      (package-initialize)
-     (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
-                      ("melpa" . "http://elpa.emacs-china.org/melpa/"))))
+     (setq package-archives '(("gnu"   . "https://elpa.gnu.org/packages/")
+                      ("melpa" . "https://melpa.org/packages/"))))
 
 ;; 注意 elpa.emacs-china.org 是 Emacs China 中文社区在国内搭建的一个 ELPA 镜像
 
@@ -18,7 +18,6 @@
  (defvar my/packages '(
                 ;; --- Auto-completion ---
                 company
-                smex
 		;; --- Better Editor ---
                 hungry-delete
                 swiper
@@ -55,10 +54,23 @@
 (require 'hungry-delete)
 (global-hungry-delete-mode)
 
-(require 'smex) ; Not needed if you use package.el
-(smex-initialize) ; Can be omitted. This might cause a (minimal) delay
+(require 'smartparens-config)
+;; Always start smartparens mode in js-mode.
+;; (add-hook 'js-mode-hook #'smartparens-strict-mode)
+(smartparens-global-mode t)
+(add-to-list 'auto-mode-alist `(,(rx ".js" string-end) . js2-mode))
 					; when Smex is auto-initialized on its first run.
-(global-set-key (kbd "M-x") 'smex)
+;; (global-set-key (kbd "M-x") 'smex)
+
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(setq enable-recursive-minibuffers t)
+(global-set-key "\C-s" 'swiper)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "C-h f") 'counsel-describe-function)
+(global-set-key (kbd "C-h v") 'counsel-describe-variable)
 
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -108,6 +120,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(company-idle-delay 0.08)
  '(package-selected-packages (quote (company))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
