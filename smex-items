@@ -1,13 +1,13 @@
 
 ;; ----- smex-history -----
 (
+ indent-buffer
+ indent-region
+ counsel-git
  info
  find-variable
  find-function
  nodejs-repl
- customize-group
- nodejs-repl-send-buffer
- package-autoremove
 )
 
 ;; ----- smex-data -----
@@ -20,4 +20,7 @@
  (find-function . 2)
  (find-variable . 1)
  (info . 1)
+ (counsel-git . 1)
+ (indent-region . 2)
+ (indent-buffer . 3)
 )
