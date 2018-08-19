@@ -99,7 +99,7 @@
 
   (setq indent-tabs-mode nil))
 
-(global-set-key (kbd "C-c t i") 'my-toggle-web-indent)
+
 
 (defun occur-dwim ()
   "Call `occur' with a sane default."
@@ -113,8 +113,6 @@
               (regexp-quote sym))))
         regexp-history)
   (call-interactively 'occur))
-(global-set-key (kbd "M-s o") 'occur-dwim)
-(global-set-key (kbd "M-s i") 'counsel-imenu)
-(global-set-key (kbd "M-s e") 'iedit-mode)
+
 
 (provide 'init-better-defaults)

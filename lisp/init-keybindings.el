@@ -16,6 +16,15 @@
 
 (global-set-key (kbd "s-/") 'indent-region-or-buffer)
 
-""
+
+;; r aka remember
+(global-set-key (kbd "C-c r") 'org-capture)
+(global-set-key (kbd "C-c a") 'org-agenda)
+
+(global-set-key (kbd "C-c t i") 'my-toggle-web-indent)
+
+(global-set-key (kbd "M-s o") 'occur-dwim)
+(global-set-key (kbd "M-s i") 'counsel-imenu)
+(global-set-key (kbd "M-s e") 'iedit-mode)
 
 (provide 'init-keybindings)

@@ -1,13 +1,13 @@
 
 ;; ----- smex-history -----
 (
+ org-capture
+ iedit-mode
  counsel-imenu
  imenu
  occur-edit-mode
  occur
  customize-group
- remove-dos-eol
- reveal-in-osx-finder
 )
 
 ;; ----- smex-data -----
@@ -29,4 +29,6 @@
  (occur-edit-mode . 3)
  (imenu . 3)
  (counsel-imenu . 2)
+ (iedit-mode . 1)
+ (org-capture . 3)
 )
