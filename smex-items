@@ -1,19 +1,19 @@
 
 ;; ----- smex-history -----
 (
- indent-buffer
- indent-region
- counsel-git
- info
- find-variable
- find-function
- nodejs-repl
+ counsel-imenu
+ imenu
+ occur-edit-mode
+ occur
+ customize-group
+ remove-dos-eol
+ reveal-in-osx-finder
 )
 
 ;; ----- smex-data -----
 (
  (eval-buffer . 1)
- (customize-group . 2)
+ (customize-group . 3)
  (package-autoremove . 1)
  (nodejs-repl . 6)
  (nodejs-repl-send-buffer . 4)
@@ -23,4 +23,10 @@
  (counsel-git . 1)
  (indent-region . 2)
  (indent-buffer . 3)
+ (reveal-in-osx-finder . 2)
+ (remove-dos-eol . 1)
+ (occur . 3)
+ (occur-edit-mode . 3)
+ (imenu . 3)
+ (counsel-imenu . 2)
 )

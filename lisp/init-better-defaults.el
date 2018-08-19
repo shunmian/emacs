@@ -15,6 +15,12 @@
 
 (setq recentf-max-menu-items 25)
 
+(define-advice show-paren-function (:around (fn) fix-show-paren-function)
+  "Highlight enclosing parens."
+  (cond ((looking-at-p "\\s(") (funcall fn))
+        (t (save-excursion
+             (ignore-errors (backward-up-list))
+             (funcall fn)))))
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
 
 (delete-selection-mode t)
@@ -54,5 +60,61 @@
 (with-eval-after-load 'dired
 (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file))
 
+(set-face-attribute 'default nil :height 170)
+
+(defun hidden-dos-eol ()
+  "Do not show ^M in files containing mixed UNIX and DOS line endings."
+  (interactive)
+  (unless buffer-display-table
+    (setq buffer-display-table (make-display-table)))
+  (aset buffer-display-table ?\^M []))
+
+(defun remove-dos-eol ()
+  "Replace DOS eolns CR LF with Unix eolns CR"
+  (interactive)
+  (goto-char (point-min))
+  (while (search-forward "\r" nil t) (replace-match "")))
+
+(defun my-web-mode-indent-setup ()
+  (setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
+  (setq web-mode-css-indent-offset 2)    ; web-mode, css in html file
+  (setq web-mode-code-indent-offset 2)   ; web-mode, js code in html file
+  )
+(add-hook 'web-mode-hook 'my-web-mode-indent-setup)
+
+(defun my-toggle-web-indent ()
+  (interactive)
+  ;; web development
+  (if (or (eq major-mode 'js-mode) (eq major-mode 'js2-mode))
+      (progn
+        (setq js-indent-level (if (= js-indent-level 2) 4 2))
+        (setq js2-basic-offset (if (= js2-basic-offset 2) 4 2))))
+
+  (if (eq major-mode 'web-mode)
+      (progn (setq web-mode-markup-indent-offset (if (= web-mode-markup-indent-offset 2) 4 2))
+             (setq web-mode-css-indent-offset (if (= web-mode-css-indent-offset 2) 4 2))
+             (setq web-mode-code-indent-offset (if (= web-mode-code-indent-offset 2) 4 2))))
+  (if (eq major-mode 'css-mode)
+      (setq css-indent-offset (if (= css-indent-offset 2) 4 2)))
+
+  (setq indent-tabs-mode nil))
+
+(global-set-key (kbd "C-c t i") 'my-toggle-web-indent)
+
+(defun occur-dwim ()
+  "Call `occur' with a sane default."
+  (interactive)
+  (push (if (region-active-p)
+            (buffer-substring-no-properties
+             (region-beginning)
+             (region-end))
+          (let ((sym (thing-at-point 'symbol)))
+            (when (stringp sym)
+              (regexp-quote sym))))
+        regexp-history)
+  (call-interactively 'occur))
+(global-set-key (kbd "M-s o") 'occur-dwim)
+(global-set-key (kbd "M-s i") 'counsel-imenu)
+(global-set-key (kbd "M-s e") 'iedit-mode)
 
 (provide 'init-better-defaults)

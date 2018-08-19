@@ -24,6 +24,9 @@
                 ;; solarized-theme
 		popwin
 		reveal-in-osx-finder
+		web-mode
+		js2-refactor
+		iedit
                 ) "Default packages")
 
 (setq package-selected-packages my/packages)
@@ -47,11 +50,18 @@
 (require 'hungry-delete)
 (global-hungry-delete-mode)
 (smartparens-global-mode t)
+(sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
 
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
 
-(add-to-list 'auto-mode-alist `(,(rx ".js" string-end) . js2-mode))
+(setq auto-mode-alist
+      (append
+       '(("\\.js\\'" . js2-mode))
+       '(("\\.html\\'" . web-mode))
+       auto-mode-alist))
+
+;(add-to-list 'auto-mode-alist `(,(rx ".js" string-end) . js2-mode))
 
 (global-company-mode t)
 (load-theme 'monokai t)
@@ -59,5 +69,8 @@
 (require 'popwin)
 (popwin-mode t)
 
+;; js2-refactor config
+(add-hook 'js2-mode-hook #'js2-refactor-mode)
+(js2r-add-keybindings-with-prefix "C-c C-m")
 
 (provide 'init-packages)
